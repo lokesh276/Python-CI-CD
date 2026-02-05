@@ -21,8 +21,7 @@ services:
       - two-tier
 
   flaskapp:
-    build:
-      context: .
+    image: lokiloki21/two-tier-flask-app:latest 
     container_name: flaskapp
     environment:
       MYSQL_HOST: mysql
