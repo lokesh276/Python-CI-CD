@@ -9,6 +9,12 @@ pipeline {
                     branch: "loki-dev"
             }
         }
+        
+        stage("Scan the code"){
+            steps{
+                sh "trivy fs . -o result.json"
+            }
+        }
 
         stage("Build") {
             steps {
@@ -57,7 +63,7 @@ pipeline {
         failure {
             emailext(
                 subject: "Build Failed",
-                body: "Bad news  Your Jenkins build has failed. Please check logs.",
+                body: "Bad news Your Jenkins build has failed. Please check logs.",
                 to: "lokeshthakur1500@gmail.com"
             )
         }
