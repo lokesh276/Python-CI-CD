@@ -44,4 +44,22 @@ pipeline {
             }
         }
     }
+
+    post {
+        success {
+            emailext(
+                subject: "Build Successful",
+                body: "Good news Your Jenkins build was successful!",
+                to: "lokeshthakur1500@gmail.com"
+            )
+        }
+
+        failure {
+            emailext(
+                subject: "Build Failed",
+                body: "Bad news  Your Jenkins build has failed. Please check logs.",
+                to: "lokeshthakur1500@gmail.com"
+            )
+        }
+    }
 }
